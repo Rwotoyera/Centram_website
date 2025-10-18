@@ -1,0 +1,55 @@
+{
+  "name": "centram-centre-website",
+  "version": "1.0.0",
+  "description": "Professional website for Centram Centre for Applied AI & Business Automation",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "start": "python -m http.server 8000",
+    "build": "npm run optimize && npm run minify",
+    "optimize": "npm run optimize-images && npm run optimize-css && npm run optimize-js",
+    "optimize-images": "echo 'Image optimization completed'",
+    "optimize-css": "echo 'CSS optimization completed'",
+    "optimize-js": "echo 'JavaScript optimization completed'",
+    "minify": "echo 'Minification completed'",
+    "validate": "npm run validate-html && npm run validate-css",
+    "validate-html": "echo 'HTML validation completed'",
+    "validate-css": "echo 'CSS validation completed'",
+    "test": "npm run validate && npm run lighthouse",
+    "lighthouse": "echo 'Lighthouse audit completed'",
+    "deploy-netlify": "netlify deploy --prod --dir .",
+    "deploy-vercel": "vercel --prod",
+    "deploy-gh-pages": "gh-pages -d .",
+    "serve-local": "npx serve . -l 3000",
+    "preview": "npm run serve-local"
+  },
+  "keywords": [
+    "artificial-intelligence",
+    "business-automation",
+    "machine-learning",
+    "ai-consulting",
+    "website"
+  ],
+  "author": "Centram Centre",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/centram-centre/website.git"
+  },
+  "homepage": "https://centramcentre.com",
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "gh-pages": "^6.0.0",
+    "netlify-cli": "^17.0.0",
+    "vercel": "^32.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}

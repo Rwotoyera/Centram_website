@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Centram Centre for Applied AI & Business Automation</title>
+    <meta name="description" content="Frequently asked questions about AI services, courses, and business automation solutions. Get answers to common questions about Centram Centre.">
+    <meta name="keywords" content="AI FAQ, artificial intelligence questions, business automation help, AI consulting questions">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="Centram Centre Logo" width="40" height="40">
+                    <span>Centram Centre</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Services</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="services.html">Other Services</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="blog.html" class="nav-link">Blog/News</a>
+                </li>
+                <li class="nav-item">
+                    <a href="faq.html" class="nav-link active">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            
+            <div class="nav-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header" id="faq">
+        <div class="container">
+            <div class="page-header-content" data-animation="fade-in">
+                <h1>Frequently Asked Questions</h1>
+                <p>Find answers to common questions about our AI services, courses, and solutions</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>FAQ</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search FAQ -->
+    <section class="faq-search">
+        <div class="container">
+            <div class="search-container" data-animation="fade-in">
+                <div class="search-box">
+                    <input type="text" id="faqSearch" placeholder="Search frequently asked questions...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <p class="search-help">Try searching for "pricing", "implementation", "support", or "training"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Categories -->
+    <section class="faq-categories">
+        <div class="container">
+            <div class="section-header" data-animation="fade-in">
+                <h2>Browse by Category</h2>
+                <p>Find answers organized by topic</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card" data-animation="slide-up" onclick="scrollToSection('general')">
+                    <div class="category-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <h3>General Information</h3>
+                    <p>Basic questions about Centram Centre and our mission</p>
+                    <span class="question-count">8 questions</span>
+                </div>
+                
+                <div class="category-card" data-animation="slide-up" onclick="scrollToSection('services')">
+                    <div class="category-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Services & Solutions</h3>
+                    <p>Questions about our AI and automation services</p>
+                    <span class="question-count">12 questions</span>
+                </div>
+                
+                <div class="category-card" data-animation="slide-up" onclick="scrollToSection('courses')">
+                    <div class="category-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Courses & Training</h3>
+                    <p>Information about our educational programs</p>
+                    <span class="question-count">10 questions</span>
+                </div>
+                
+                <div class="category-card" data-animation="slide-up" onclick="scrollToSection('pricing')">
+                    <div class="category-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Pricing & Billing</h3>
+                    <p>Questions about costs, payment, and billing</p>
+                    <span class="question-count">6 questions</span>
+                </div>
+                
+                <div class="category-card" data-animation="slide-up" onclick="scrollToSection('technical')">
+                    <div class="category-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Technical Support</h3>
+                    <p>Technical questions and troubleshooting</p>
+                    <span class="question-count">9 questions</span>
+                </div>
+                
+                <div class="category-card" data-animation="slide-up" onclick="scrollToSection('implementation')">
+                    <div class="category-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Implementation</h3>
+                    <p>Questions about project delivery and timelines</p>
+                    <span class="question-count">7 questions</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- General Information FAQ -->
+    <section id="general" class="faq-section">
+        <div class="container">
+            <div class="section-header" data-animation="fade-in">
+                <h2>General Information</h2>
+                <p>Learn about Centram Centre and what we do</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>What is Centram Centre for Applied AI & Business Automation?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Centram Centre is a leading organization specializing in Applied Artificial Intelligence and Business Automation solutions. We help businesses transform their operations through cutting-edge AI technologies, automation systems, and comprehensive training programs. Our mission is to make AI accessible and practical for organizations of all sizes.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>What industries do you serve?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We serve a wide range of industries including healthcare, finance, manufacturing, retail, technology, education, and government. Our solutions are designed to be adaptable to various industry-specific challenges and requirements. We have successfully implemented AI solutions across Fortune 500 companies and growing startups alike.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>How long has Centram Centre been in business?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Centram Centre was established in 2020 with a vision to bridge the gap between advanced AI technology and practical business applications. In our 5+ years of operation, we have completed over 500 projects and trained more than 2,500 professionals in AI and automation technologies.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>Where are you located?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our headquarters is located at 123 AI Innovation Drive, Tech City, TC 12345. We also serve clients globally through our remote services and have partnerships with organizations worldwide to deliver our solutions internationally.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Solutions FAQ -->
+    <section id="services" class="faq-section">
+        <div class="container">
+            <div class="section-header" data-animation="fade-in">
+                <h2>Services & Solutions</h2>
+                <p>Understanding our AI and automation offerings</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>What types of AI solutions do you provide?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We provide comprehensive AI solutions including machine learning models, natural language processing systems, computer vision applications, predictive analytics, robotic process automation (RPA), intelligent chatbots, and custom AI development. Each solution is tailored to meet specific business objectives and integrate seamlessly with existing systems.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>How do you ensure AI solutions integrate with our existing systems?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our integration approach begins with a thorough assessment of your current technology stack. We design solutions with compatibility in mind, using industry-standard APIs and protocols. Our team works closely with your IT department to ensure smooth integration with minimal disruption to existing workflows. We also provide comprehensive testing and validation before full deployment.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>Can you work with our existing data infrastructure?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We specialize in working with diverse data environments including cloud platforms (AWS, Azure, GCP), on-premises databases, hybrid systems, and legacy infrastructure. Our data scientists and engineers are experienced in data migration, transformation, and integration across various platforms and formats.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>Do you provide ongoing maintenance and support?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer comprehensive maintenance and support packages including 24/7 monitoring, regular updates, performance optimization, bug fixes, and security patches. Our support plans range from basic maintenance to full managed services, depending on your needs and requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses & Training FAQ -->
+    <section id="courses" class="faq-section">
+        <div class="container">
+            <div class="section-header" data-animation="fade-in">
+                <h2>Courses & Training</h2>
+                <p>Information about our educational programs</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>What AI courses do you offer?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer courses for all skill levels, from beginner to advanced. Our curriculum includes AI Fundamentals, Python for AI, Machine Learning Algorithms, Deep Learning, Natural Language Processing, Computer Vision, Business Process Automation, and AI Strategy & Leadership. All courses are designed with hands-on projects and real-world applications.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>Are the courses available online or in-person?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer flexible learning options including online self-paced courses, live virtual classrooms, in-person workshops, and corporate training programs. Our online courses feature interactive content, video lectures, hands-on labs, and direct access to instructors during scheduled office hours.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>Do I need programming experience to take your courses?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Not for our beginner courses. We offer "AI Fundamentals for Business" and "Introduction to AI" courses that require no programming background. For technical courses involving machine learning and development, basic programming knowledge is helpful but we also offer "Python for AI" as a foundation course for those new to programming.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>Do you provide certificates upon completion?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, all course participants receive industry-recognized certificates upon successful completion. Our certificates include detailed skill assessments and can be verified online. We also offer specialized certifications for advanced programs and provide digital badges for LinkedIn and professional profiles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Billing FAQ -->
+    <section id="pricing" class="faq-section">
+        <div class="container">
+            <div class="section-header" data-animation="fade-in">
+                <h2>Pricing & Billing</h2>
+                <p>Understanding costs and payment options</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>How is pricing determined for AI projects?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pricing is based on project scope, complexity, timeline, and resource requirements. We conduct a detailed assessment to understand your needs and provide a comprehensive quote. Factors include data volume, integration complexity, custom development requirements, and ongoing support needs. We offer both fixed-price and time-and-materials pricing models.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>Do you offer payment plans or financing options?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer flexible payment options including milestone-based payments, monthly installments, and extended payment terms for qualified clients. For enterprise clients, we also provide financing options and can work with your procurement processes to accommodate budget cycles and approval workflows.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>Are there discounts for multiple courses or bulk training?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer significant discounts for corporate training programs, bulk course purchases, and multi-course learning paths. Group discounts start at 10+ students, and enterprise packages can include unlimited access to our entire course library. Contact our sales team for customized pricing based on your training needs.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>What is your refund policy?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day money-back guarantee for all courses. For consulting and development projects, refund terms are outlined in the project agreement. If you're not satisfied with our services, we work with you to address concerns and provide appropriate remedies including partial or full refunds when applicable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Support FAQ -->
+    <section id="technical" class="faq-section">
+        <div class="container">
+            <div class="section-header" data-animation="fade-in">
+                <h2>Technical Support</h2>
+                <p>Technical questions and troubleshooting help</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>What kind of technical support do you provide?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We provide comprehensive technical support including email support, phone support, live chat, remote assistance, on-site support (when needed), and emergency support for critical systems. Our support team includes AI engineers, data scientists, and system administrators who can help with both technical and business questions.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>What are your support hours?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Standard support is available Monday-Friday, 9 AM-6 PM EST. Premium support clients receive 24/7 coverage including weekends and holidays. Emergency support for critical system issues is available 24/7 for all enterprise clients. Response times vary by support level from 1 hour (emergency) to 24 hours (standard).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>How do I report a technical issue?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can report issues through our support portal, email (support@centramcentre.com), phone (+1 555-123-4568), or live chat on our website. For fastest response, use our support portal which automatically creates tickets and provides tracking. Include as much detail as possible about the issue, error messages, and steps to reproduce.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>Do you provide training for our technical team?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we provide comprehensive technical training for your team including system administration, model maintenance, troubleshooting, and best practices. Training can be conducted on-site, virtually, or through our online learning platform. We also provide detailed documentation and video tutorials for common tasks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation FAQ -->
+    <section id="implementation" class="faq-section">
+        <div class="container">
+            <div class="section-header" data-animation="fade-in">
+                <h2>Implementation Process</h2>
+                <p>Questions about project delivery and timelines</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>How long does a typical AI implementation take?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Implementation timelines vary based on project complexity. Simple automation projects may take 2-4 weeks, while comprehensive AI systems can take 3-6 months. Complex enterprise implementations may require 6-12 months. We provide detailed project timelines during the planning phase and regular progress updates throughout implementation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>What is your implementation methodology?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We follow a proven 5-phase methodology: 1) Discovery & Assessment, 2) Strategy & Planning, 3) Development & Integration, 4) Testing & Training, 5) Deployment & Support. Each phase includes specific deliverables, checkpoints, and client approvals to ensure project success and alignment with your objectives.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>How do you handle project changes and scope adjustments?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We use a structured change management process that includes impact assessment, timeline adjustments, and cost implications. All changes are documented and approved before implementation. We maintain flexibility to accommodate evolving business needs while ensuring project objectives and budgets are managed effectively.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-animation="slide-up">
+                    <div class="faq-question">
+                        <h4>What happens after implementation is complete?</h4>
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Post-implementation, we provide ongoing support, monitoring, and optimization services. This includes performance monitoring, regular maintenance, user training, system updates, and continuous improvement recommendations. We also offer different support levels based on your needs and can provide long-term partnerships for system evolution.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Still Have Questions -->
+    <section class="still-questions">
+        <div class="container">
+            <div class="questions-content" data-animation="fade-in">
+                <h2>Still Have Questions?</h2>
+                <p>Can't find the answer you're looking for? Our team is here to help you with any questions about AI solutions, courses, or services.</p>
+                
+                <div class="contact-options">
+                    <div class="contact-option" data-animation="slide-up">
+                        <div class="contact-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Live Chat</h3>
+                        <p>Chat with our support team in real-time</p>
+                        <button class="btn btn-primary" onclick="openLiveChat()">Start Chat</button>
+                    </div>
+                    
+                    <div class="contact-option" data-animation="slide-up">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Support</h3>
+                        <p>Send us your questions and get detailed answers</p>
+                        <a href="mailto:support@centramcentre.com" class="btn btn-outline">Send Email</a>
+                    </div>
+                    
+                    <div class="contact-option" data-animation="slide-up">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone Support</h3>
+                        <p>Speak directly with our experts</p>
+                        <a href="tel:+15551234567" class="btn btn-outline">Call Now</a>
+                    </div>
+                    
+                    <div class="contact-option" data-animation="slide-up">
+                        <div class="contact-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>Schedule Consultation</h3>
+                        <p>Book a free consultation with our AI experts</p>
+                        <a href="contact.html" class="btn btn-primary">Book Meeting</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.png" alt="Centram Centre Logo" width="40" height="40">
+                        <span>Centram Centre</span>
+                    </div>
+                    <p>Pioneering the future of Applied Artificial Intelligence and Business Automation with innovative solutions that transform industries.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" data-tooltip="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link" data-tooltip="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" data-tooltip="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" data-tooltip="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="courses.html">AI Training Courses</a></li>
+                        <li><a href="services.html">Business Automation</a></li>
+                        <li><a href="services.html">Machine Learning</a></li>
+                        <li><a href="services.html">Data Analytics</a></li>
+                        <li><a href="services.html">AI Consulting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 AI Innovation Drive<br>Tech City, TC 12345</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@centramcentre.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Centram Centre for Applied AI & Business Automation. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
+    
+    <script>
+        // FAQ functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ toggle functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const toggle = item.querySelector('.faq-toggle');
+                
+                question.addEventListener('click', function() {
+                    const isOpen = item.classList.contains('active');
+                    
+                    // Close all FAQ items
+                    faqItems.forEach(faqItem => {
+                        faqItem.classList.remove('active');
+                        faqItem.querySelector('.faq-toggle').classList.remove('fa-minus');
+                        faqItem.querySelector('.faq-toggle').classList.add('fa-plus');
+                    });
+                    
+                    // Open clicked item if it wasn't already open
+                    if (!isOpen) {
+                        item.classList.add('active');
+                        toggle.classList.remove('fa-plus');
+                        toggle.classList.add('fa-minus');
+                    }
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.getElementById('faqSearch');
+            const searchBtn = document.querySelector('.search-btn');
+            
+            function searchFAQs() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const faqSections = document.querySelectorAll('.faq-section');
+                
+                if (searchTerm === '') {
+                    faqSections.forEach(section => {
+                        section.style.display = 'block';
+                        const items = section.querySelectorAll('.faq-item');
+                        items.forEach(item => item.style.display = 'block');
+                    });
+                    return;
+                }
+                
+                let hasResults = false;
+                
+                faqSections.forEach(section => {
+                    const items = section.querySelectorAll('.faq-item');
+                    let sectionHasResults = false;
+                    
+                    items.forEach(item => {
+                        const question = item.querySelector('.faq-question h4').textContent.toLowerCase();
+                        const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                        
+                        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                            item.style.display = 'block';
+                            sectionHasResults = true;
+                            hasResults = true;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    section.style.display = sectionHasResults ? 'block' : 'none';
+                });
+                
+                if (!hasResults) {
+                    showNotification('No results found for "' + searchTerm + '". Try different keywords or contact support for help.', 'info');
+                }
+            }
+            
+            searchBtn.addEventListener('click', searchFAQs);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchFAQs();
+                }
+            });
+            
+            // Clear search on input clear
+            searchInput.addEventListener('input', function() {
+                if (this.value === '') {
+                    searchFAQs();
+                }
+            });
+        });
+        
+        // Smooth scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+        
+        // Live chat functionality
+        function openLiveChat() {
+            showNotification('Live chat will be available soon! Please use our contact form or call us directly.', 'info');
+        }
+    </script>
+</body>
+</html>

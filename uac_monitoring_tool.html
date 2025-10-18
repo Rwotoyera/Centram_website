@@ -1,0 +1,1089 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>UAC Monitoring Tool</title>
+            <style>
+                
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        #uac-app {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .app-header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .app-header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .app-header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group-wide {
+            grid-column: 1 / -1;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.7);
+            color: #2c3e50;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            background: white;
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .dept-list {
+            margin-top: 15px;
+        }
+
+        .dept-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dept-item:last-child {
+            border-bottom: none;
+        }
+
+        .demo-users {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .user-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .user-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .message.info {
+            background: #cce7ff;
+            color: #004085;
+            border: 1px solid #b3d7ff;
+        }
+
+        .report-output {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+
+        .report-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .report-header h3 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .report-meta {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .report-content {
+            line-height: 1.6;
+        }
+
+        .users-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .user-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+
+        .user-avatar {
+            font-size: 2.5em;
+            margin-right: 20px;
+        }
+
+        .user-details h4 {
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .user-details p {
+            margin: 3px 0;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .status-badge {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .status-badge.active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        @media (max-width: 768px) {
+            #uac-app {
+                padding: 15px;
+            }
+
+            .app-header h1 {
+                font-size: 2em;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-nav {
+                justify-content: center;
+            }
+
+            .nav-btn {
+                font-size: 12px;
+                padding: 10px 15px;
+            }
+        }
+        
+            </style>
+        </head>
+        <body>
+            
+        <div id="uac-app">
+            <!-- Header -->
+            <header class="app-header">
+                <div class="header-content">
+                    <h1>🏛️ UAC Monitoring Tool</h1>
+                    <p>Uganda AIDS Commission - Budget & Performance Monitoring System</p>
+                    <div id="user-info" class="user-info" style="display: none;">
+                        <span id="user-name"></span>
+                        <button id="logout-btn" class="btn btn-secondary">🚪 Logout</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Login Section -->
+            <div id="login-section" class="section">
+                <div class="card">
+                    <h2>🔐 User Login</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <select id="username" required>
+                                <option value="">Select User...</option>
+                                <option value="uac_admin">Admin (uac_admin)</option>
+                                <option value="finance_director">Finance Director</option>
+                                <option value="planning_manager">Planning Manager</option>
+                                <option value="data_clerk_hiv">HIV Data Clerk</option>
+                                <option value="hr_admin">HR Administrator</option>
+                                <option value="advocacy_viewer">Advocacy Viewer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">🔑 Login</button>
+                    </form>
+                    <div id="login-message" class="message"></div>
+
+                    <div class="demo-users">
+                        <h3>📋 Demo Credentials</h3>
+                        <div class="user-grid">
+                            <div class="user-card">
+                                <strong>Admin</strong><br>
+                                uac_admin / UAC@Admin2025
+                            </div>
+                            <div class="user-card">
+                                <strong>Finance</strong><br>
+                                finance_director / Finance@2025
+                            </div>
+                            <div class="user-card">
+                                <strong>Data Entry</strong><br>
+                                data_clerk_hiv / DataEntry@2025
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Dashboard -->
+            <div id="main-section" class="section" style="display: none;">
+                <!-- Navigation Menu -->
+                <nav class="main-nav">
+                    <button id="nav-dashboard" class="nav-btn active">📋 Dashboard</button>
+                    <button id="nav-budget" class="nav-btn">💰 Budget Entry</button>
+                    <button id="nav-output" class="nav-btn">📈 Output Entry</button>
+                    <button id="nav-reports" class="nav-btn">📊 Reports</button>
+                    <button id="nav-users" class="nav-btn">👥 Users</button>
+                </nav>
+
+                <!-- Dashboard View -->
+                <div id="dashboard-view" class="view active">
+                    <h2>📋 Performance Dashboard</h2>
+                    <div class="dashboard-grid">
+                        <div class="stat-card">
+                            <h3>💰 Budget Overview</h3>
+                            <div class="stat-value">UGX 2.5B</div>
+                            <div class="stat-label">Total Allocated</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 67%"></div>
+                            </div>
+                            <small>67% Utilized</small>
+                        </div>
+
+                        <div class="stat-card">
+                            <h3>📈 Performance</h3>
+                            <div class="stat-value">84%</div>
+                            <div class="stat-label">Target Achievement</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 84%"></div>
+                            </div>
+                            <small>42 of 50 targets met</small>
+                        </div>
+
+                        <div class="stat-card">
+                            <h3>🏢 Departments</h3>
+                            <div class="dept-list">
+                                <div class="dept-item">
+                                    <span>Finance & Accounts</span>
+                                    <span class="status-good">🟢 89%</span>
+                                </div>
+                                <div class="dept-item">
+                                    <span>HIV Prevention</span>
+                                    <span class="status-warning">🟡 76%</span>
+                                </div>
+                                <div class="dept-item">
+                                    <span>Planning & Policy</span>
+                                    <span class="status-good">🟢 82%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Budget Entry View -->
+                <div id="budget-view" class="view">
+                    <h2>💰 Budget Data Entry</h2>
+                    <div class="card">
+                        <form id="budget-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="budget-year">Year:</label>
+                                    <select id="budget-year" required>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2028">2028</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="budget-dept">Department:</label>
+                                    <select id="budget-dept" required>
+                                        <option value="">Select Department...</option>
+                                        <option value="Finance & Accounts">Finance & Accounts</option>
+                                        <option value="HIV Prevention & Research">HIV Prevention & Research</option>
+                                        <option value="Planning & Policy">Planning & Policy</option>
+                                        <option value="Advocacy & Communication">Advocacy & Communication</option>
+                                        <option value="Human Resources">Human Resources</option>
+                                        <option value="Director General Office">Director General Office</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="budget-priority">Priority Area:</label>
+                                    <select id="budget-priority" required>
+                                        <option value="">Select Priority...</option>
+                                        <option value="HIV Prevention">HIV Prevention</option>
+                                        <option value="Treatment & Care">Treatment & Care</option>
+                                        <option value="Strategic Information">Strategic Information</option>
+                                        <option value="Human Rights">Human Rights</option>
+                                        <option value="Social Protection">Social Protection</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="budget-category">Budget Category:</label>
+                                    <select id="budget-category" required>
+                                        <option value="">Select Category...</option>
+                                        <option value="Personnel Costs">Personnel Costs</option>
+                                        <option value="Program Activities">Program Activities</option>
+                                        <option value="Administrative Costs">Administrative Costs</option>
+                                        <option value="Capital Investments">Capital Investments</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group form-group-wide">
+                                    <label for="budget-amount">Annual Budget (UGX):</label>
+                                    <input type="number" id="budget-amount" min="0" step="1000" required>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">💾 Save Budget Entry</button>
+                        </form>
+                        <div id="budget-message" class="message"></div>
+                    </div>
+                </div>
+
+                <!-- Output Entry View -->
+                <div id="output-view" class="view">
+                    <h2>📈 Output Data Entry</h2>
+                    <div class="card">
+                        <form id="output-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="output-year">Year:</label>
+                                    <select id="output-year" required>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2028">2028</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="output-dept">Department:</label>
+                                    <select id="output-dept" required>
+                                        <option value="">Select Department...</option>
+                                        <option value="Finance & Accounts">Finance & Accounts</option>
+                                        <option value="HIV Prevention & Research">HIV Prevention & Research</option>
+                                        <option value="Planning & Policy">Planning & Policy</option>
+                                        <option value="Advocacy & Communication">Advocacy & Communication</option>
+                                        <option value="Human Resources">Human Resources</option>
+                                        <option value="Director General Office">Director General Office</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="output-priority">Priority Area:</label>
+                                    <select id="output-priority" required>
+                                        <option value="">Select Priority...</option>
+                                        <option value="HIV Prevention">HIV Prevention</option>
+                                        <option value="Treatment & Care">Treatment & Care</option>
+                                        <option value="Strategic Information">Strategic Information</option>
+                                        <option value="Human Rights">Human Rights</option>
+                                        <option value="Social Protection">Social Protection</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="output-target">Annual Target:</label>
+                                    <input type="number" id="output-target" min="0" required>
+                                </div>
+
+                                <div class="form-group form-group-wide">
+                                    <label for="output-unit">Unit of Measurement:</label>
+                                    <input type="text" id="output-unit" placeholder="e.g., People reached, Reports produced" required>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">💾 Save Output Entry</button>
+                        </form>
+                        <div id="output-message" class="message"></div>
+                    </div>
+                </div>
+
+                <!-- Reports View -->
+                <div id="reports-view" class="view">
+                    <h2>📊 Report Generation</h2>
+                    <div class="card">
+                        <form id="report-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="report-type">Report Type:</label>
+                                    <select id="report-type" required>
+                                        <option value="">Select Report...</option>
+                                        <option value="budget-summary">Budget Summary Report</option>
+                                        <option value="output-performance">Output Performance Report</option>
+                                        <option value="department-analysis">Department Analysis Report</option>
+                                        <option value="quarterly-review">Quarterly Review Report</option>
+                                        <option value="variance-analysis">Variance Analysis Report</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="report-year">Year:</label>
+                                    <select id="report-year" required>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2028">2028</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group form-group-wide">
+                                    <label for="report-dept">Department Filter:</label>
+                                    <select id="report-dept">
+                                        <option value="all">All Departments</option>
+                                        <option value="Finance & Accounts">Finance & Accounts</option>
+                                        <option value="HIV Prevention & Research">HIV Prevention & Research</option>
+                                        <option value="Planning & Policy">Planning & Policy</option>
+                                        <option value="Advocacy & Communication">Advocacy & Communication</option>
+                                        <option value="Human Resources">Human Resources</option>
+                                        <option value="Director General Office">Director General Office</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">📊 Generate Report</button>
+                        </form>
+
+                        <div id="report-output" class="report-output" style="display: none;">
+                            <div class="report-header">
+                                <h3 id="report-title"></h3>
+                                <div class="report-meta">
+                                    <span id="report-date"></span> | 
+                                    <span id="report-user"></span>
+                                </div>
+                            </div>
+                            <div id="report-content" class="report-content"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Users View -->
+                <div id="users-view" class="view">
+                    <h2>👥 User Management</h2>
+                    <div class="card">
+                        <div class="users-grid">
+                            <div class="user-item">
+                                <div class="user-avatar">👤</div>
+                                <div class="user-details">
+                                    <h4>UAC Administrator</h4>
+                                    <p>Username: uac_admin</p>
+                                    <p>Role: System Administrator</p>
+                                    <span class="status-badge active">🟢 Active</span>
+                                </div>
+                            </div>
+
+                            <div class="user-item">
+                                <div class="user-avatar">💼</div>
+                                <div class="user-details">
+                                    <h4>Finance Director</h4>
+                                    <p>Username: finance_director</p>
+                                    <p>Role: Finance Management</p>
+                                    <span class="status-badge active">🟢 Active</span>
+                                </div>
+                            </div>
+
+                            <div class="user-item">
+                                <div class="user-avatar">📊</div>
+                                <div class="user-details">
+                                    <h4>Planning Manager</h4>
+                                    <p>Username: planning_manager</p>
+                                    <p>Role: Planning & Reports</p>
+                                    <span class="status-badge active">🟢 Active</span>
+                                </div>
+                            </div>
+
+                            <div class="user-item">
+                                <div class="user-avatar">📝</div>
+                                <div class="user-details">
+                                    <h4>Grace Achieng</h4>
+                                    <p>Username: data_clerk_hiv</p>
+                                    <p>Role: Data Entry Clerk</p>
+                                    <span class="status-badge active">🟢 Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            <script>
+                
+        // Global variables
+        let currentUser = null;
+        let currentSession = null;
+
+        // User credentials mapping
+        const userCredentials = {
+            'uac_admin': 'UAC@Admin2025',
+            'finance_director': 'Finance@2025',
+            'planning_manager': 'Planning@2025',
+            'data_clerk_hiv': 'DataEntry@2025',
+            'hr_admin': 'HRAdmin@2025',
+            'advocacy_viewer': 'Viewer@2025'
+        };
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        function initializeApp() {
+            // Set up event listeners
+            setupEventListeners();
+
+            // Show login section by default
+            showSection('login');
+        }
+
+        function setupEventListeners() {
+            // Login form
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+
+            // Logout button
+            document.getElementById('logout-btn').addEventListener('click', handleLogout);
+
+            // Navigation buttons
+            document.getElementById('nav-dashboard').addEventListener('click', () => showView('dashboard'));
+            document.getElementById('nav-budget').addEventListener('click', () => showView('budget'));
+            document.getElementById('nav-output').addEventListener('click', () => showView('output'));
+            document.getElementById('nav-reports').addEventListener('click', () => showView('reports'));
+            document.getElementById('nav-users').addEventListener('click', () => showView('users'));
+
+            // Form submissions
+            document.getElementById('budget-form').addEventListener('submit', handleBudgetSubmission);
+            document.getElementById('output-form').addEventListener('submit', handleOutputSubmission);
+            document.getElementById('report-form').addEventListener('submit', handleReportGeneration);
+
+            // Auto-fill password when username is selected
+            document.getElementById('username').addEventListener('change', function() {
+                const password = userCredentials[this.value];
+                if (password) {
+                    document.getElementById('password').value = password;
+                }
+            });
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Simulate authentication
+            if (userCredentials[username] === password) {
+                // Successful login
+                currentUser = {
+                    username: username,
+                    fullName: getUserFullName(username),
+                    role: getUserRole(username),
+                    department: getUserDepartment(username)
+                };
+
+                showMessage('login-message', 'Login successful! Welcome ' + currentUser.fullName, 'success');
+
+                setTimeout(() => {
+                    showSection('main');
+                    updateUserInfo();
+                    showView('dashboard');
+                }, 1000);
+
+            } else {
+                showMessage('login-message', 'Invalid credentials. Please try again.', 'error');
+            }
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            currentSession = null;
+
+            // Clear forms
+            document.getElementById('login-form').reset();
+            document.getElementById('budget-form').reset();
+            document.getElementById('output-form').reset();
+            document.getElementById('report-form').reset();
+
+            // Clear messages
+            clearAllMessages();
+
+            // Show login section
+            showSection('login');
+            showMessage('login-message', 'Logged out successfully.', 'info');
+        }
+
+        function handleBudgetSubmission(e) {
+            e.preventDefault();
+
+            const formData = {
+                year: document.getElementById('budget-year').value,
+                department: document.getElementById('budget-dept').value,
+                priority: document.getElementById('budget-priority').value,
+                category: document.getElementById('budget-category').value,
+                amount: document.getElementById('budget-amount').value
+            };
+
+            // Validate form
+            if (!formData.department || !formData.priority || !formData.category || !formData.amount) {
+                showMessage('budget-message', 'Please fill in all required fields.', 'error');
+                return;
+            }
+
+            if (formData.amount <= 0) {
+                showMessage('budget-message', 'Budget amount must be greater than 0.', 'error');
+                return;
+            }
+
+            // Simulate saving
+            showMessage('budget-message', '✅ Budget entry saved successfully!\n' +
+                'Year: ' + formData.year + '\n' +
+                'Department: ' + formData.department + '\n' +
+                'Priority Area: ' + formData.priority + '\n' +
+                'Category: ' + formData.category + '\n' +
+                'Amount: UGX ' + parseInt(formData.amount).toLocaleString() + '\n' +
+                'Entered by: ' + currentUser.fullName, 'success');
+
+            // Clear form
+            document.getElementById('budget-form').reset();
+        }
+
+        function handleOutputSubmission(e) {
+            e.preventDefault();
+
+            const formData = {
+                year: document.getElementById('output-year').value,
+                department: document.getElementById('output-dept').value,
+                priority: document.getElementById('output-priority').value,
+                target: document.getElementById('output-target').value,
+                unit: document.getElementById('output-unit').value
+            };
+
+            // Validate form
+            if (!formData.department || !formData.priority || !formData.target || !formData.unit) {
+                showMessage('output-message', 'Please fill in all required fields.', 'error');
+                return;
+            }
+
+            if (formData.target <= 0) {
+                showMessage('output-message', 'Target must be greater than 0.', 'error');
+                return;
+            }
+
+            // Simulate saving
+            showMessage('output-message', '✅ Output entry saved successfully!\n' +
+                'Year: ' + formData.year + '\n' +
+                'Department: ' + formData.department + '\n' +
+                'Priority Area: ' + formData.priority + '\n' +
+                'Target: ' + parseInt(formData.target).toLocaleString() + ' ' + formData.unit + '\n' +
+                'Entered by: ' + currentUser.fullName, 'success');
+
+            // Clear form
+            document.getElementById('output-form').reset();
+        }
+
+        function handleReportGeneration(e) {
+            e.preventDefault();
+
+            const reportType = document.getElementById('report-type').value;
+            const reportYear = document.getElementById('report-year').value;
+            const reportDept = document.getElementById('report-dept').value;
+
+            if (!reportType) {
+                alert('Please select a report type.');
+                return;
+            }
+
+            // Show loading
+            const reportOutput = document.getElementById('report-output');
+            reportOutput.style.display = 'block';
+
+            document.getElementById('report-title').textContent = getReportTitle(reportType);
+            document.getElementById('report-date').textContent = new Date().toLocaleDateString();
+            document.getElementById('report-user').textContent = 'Generated by: ' + currentUser.fullName;
+
+            // Generate report content
+            const content = generateReportContent(reportType, reportYear, reportDept);
+            document.getElementById('report-content').innerHTML = content;
+        }
+
+        function showSection(sectionName) {
+            // Hide all sections
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('main-section').style.display = 'none';
+
+            // Show selected section
+            if (sectionName === 'login') {
+                document.getElementById('login-section').style.display = 'block';
+            } else if (sectionName === 'main') {
+                document.getElementById('main-section').style.display = 'block';
+            }
+        }
+
+        function showView(viewName) {
+            // Remove active class from all nav buttons and views
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+
+            // Add active class to selected nav button and view
+            document.getElementById('nav-' + viewName).classList.add('active');
+            document.getElementById(viewName + '-view').classList.add('active');
+        }
+
+        function updateUserInfo() {
+            document.getElementById('user-info').style.display = 'flex';
+            document.getElementById('user-name').textContent = 
+                '👤 ' + currentUser.fullName + ' (' + currentUser.role + ')';
+        }
+
+        function showMessage(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = 'message ' + type;
+            element.style.display = 'block';
+        }
+
+        function clearAllMessages() {
+            const messages = document.querySelectorAll('.message');
+            messages.forEach(msg => {
+                msg.textContent = '';
+                msg.style.display = 'none';
+            });
+        }
+
+        function getUserFullName(username) {
+            const names = {
+                'uac_admin': 'UAC Administrator',
+                'finance_director': 'Dr. James Mukasa',
+                'planning_manager': 'Sarah Nalwanga',
+                'data_clerk_hiv': 'Grace Achieng',
+                'hr_admin': 'Peter Ssemakula',
+                'advocacy_viewer': 'Mary Namukasa'
+            };
+            return names[username] || username;
+        }
+
+        function getUserRole(username) {
+            const roles = {
+                'uac_admin': 'System Administrator',
+                'finance_director': 'Finance Director',
+                'planning_manager': 'Planning Manager',
+                'data_clerk_hiv': 'Data Entry Clerk',
+                'hr_admin': 'HR Administrator',
+                'advocacy_viewer': 'Report Viewer'
+            };
+            return roles[username] || 'User';
+        }
+
+        function getUserDepartment(username) {
+            const departments = {
+                'uac_admin': 'Administration',
+                'finance_director': 'Finance & Accounts',
+                'planning_manager': 'Planning & Policy',
+                'data_clerk_hiv': 'HIV Prevention & Research',
+                'hr_admin': 'Human Resources',
+                'advocacy_viewer': 'Advocacy & Communication'
+            };
+            return departments[username] || 'General';
+        }
+
+        function getReportTitle(reportType) {
+            const titles = {
+                'budget-summary': 'Budget Summary Report',
+                'output-performance': 'Output Performance Report',
+                'department-analysis': 'Department Analysis Report',
+                'quarterly-review': 'Quarterly Review Report',
+                'variance-analysis': 'Variance Analysis Report'
+            };
+            return titles[reportType] || 'Report';
+        }
+
+        function generateReportContent(reportType, year, department) {
+            const deptText = department === 'all' ? 'All Departments' : department;
+
+            let content = `
+                <div style="margin-bottom: 20px;">
+                    <h4>📊 Report Parameters</h4>
+                    <p><strong>Year:</strong> ${year}</p>
+                    <p><strong>Department:</strong> ${deptText}</p>
+                    <p><strong>Generated:</strong> ${new Date().toLocaleString()}</p>
+                </div>
+            `;
+
+            if (reportType === 'budget-summary') {
+                content += `
+                    <div style="margin-bottom: 20px;">
+                        <h4>💰 Budget Summary</h4>
+                        <p>Total Budget Allocated: UGX 2,500,000,000</p>
+                        <p>Budget Utilized: 67% (UGX 1,675,000,000)</p>
+                        <p>Remaining Budget: UGX 825,000,000</p>
+                        <p>Variance from Plan: -8%</p>
+                    </div>
+                `;
+            }
+
+            if (reportType === 'output-performance') {
+                content += `
+                    <div style="margin-bottom: 20px;">
+                        <h4>📈 Performance Metrics</h4>
+                        <p>Targets Set: 50</p>
+                        <p>Targets Achieved: 42 (84%)</p>
+                        <p>In Progress: 8</p>
+                        <p>Achievement Rate: 84%</p>
+                    </div>
+                `;
+            }
+
+            content += `
+                <div style="margin-bottom: 20px;">
+                    <h4>🏢 Department Performance</h4>
+                    <ul>
+                        <li>Finance & Accounts: Budget 89% | Outputs 92%</li>
+                        <li>HIV Prevention: Budget 76% | Outputs 81%</li>
+                        <li>Planning & Policy: Budget 82% | Outputs 88%</li>
+                        <li>Advocacy: Budget 71% | Outputs 79%</li>
+                        <li>Human Resources: Budget 94% | Outputs 96%</li>
+                        <li>Director General: Budget 85% | Outputs 87%</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4>📊 Key Recommendations</h4>
+                    <ul>
+                        <li>Increase budget utilization in Q4</li>
+                        <li>Focus on underperforming priority areas</li>
+                        <li>Strengthen monitoring mechanisms</li>
+                        <li>Review quarterly targets for realism</li>
+                    </ul>
+                </div>
+            `;
+
+            return content;
+        }
+        
+            </script>
+        </body>
+        </html>
+        
